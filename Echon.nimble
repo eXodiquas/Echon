@@ -1,6 +1,6 @@
 # Package
 
-version       = "0.1.0"
+version       = "0.1.1"
 author        = "Timo 'eXodiquas' Netzer"
 description   = "A small package to create lindenmayer-systems or l-systems."
 license       = "MIT"

@@ -1,4 +1,5 @@
 import sequtils
+import tables
 
 type
   ## A tuple that represents a replacement rule for the l-system.
@@ -9,18 +10,21 @@ type
 proc generateSystem*(start: string, p: seq[Prule], cycle: int): string =
   ## Takes a starting word, a seq of rules and a int for the number of recurring cycles 
   ## and produces a string that represents the input string after the l-system transformations.
+  
+  #[
+    Convert the rules into a table to get faster access to the keys.
+  ]#
+  let ruletable = p.toTable()
 
   var res = ""
-  
   #[
     Checks if there is a rule that applies to the current char c in the current word. 
     If so apply the first rule that matches the character. 
     If there is no such rule just write the character as it is.
   ]#
   for c in start:
-    let interm = filter(p, proc (x: Prule): bool = x[0] == c)
-    if interm.len > 0:
-      res.add(interm[0][1])
+    if ruletable.hasKey(c):
+      res.add(ruletable.getOrDefault(c, "ERROR"))
     else:
       res.add(c)
   
