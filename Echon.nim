@@ -1,4 +1,3 @@
-import sequtils
 import tables
 
 type
@@ -16,7 +15,11 @@ proc generateSystem*(start: string, p: seq[Prule], cycle: int): string =
   ]#
   let ruletable = p.toTable()
 
+  #[
+    Represents the result of the l-system.
+  ]#
   var res = ""
+
   #[
     Checks if there is a rule that applies to the current char c in the current word. 
     If so apply the first rule that matches the character. 
