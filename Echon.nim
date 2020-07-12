@@ -6,8 +6,6 @@ type
     sym: char
     word: string
 
-
-
 proc generateSystem*(start: string, p: seq[Prule], cycle: int): string =
   ## Takes a starting word, a seq of rules and a int for the number of recurring cycles 
   ## and produces a string that represents the input string after the l-system transformations.
