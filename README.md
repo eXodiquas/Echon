@@ -3,6 +3,12 @@ A simple library to generate L-systems for [Nim](https://nim-lang.org/).
 
 Just call ```generateSystem(start: string, p: seq[Prule], cycle: int)``` where ```start``` is your intial word, ```p``` is a seq of replacement rules like ```(sym: 'A', word: "Hello World!")``` and ```cycle``` is the number of recursions before the function returns its result.
 
+Be careful: 
+```
+generateSystem("F--F--F", @[(sym: 'F', word: "F+F--F+F")], 0) == "F+F--F+F--F+F--F+F--F+F--F+F"
+```
+with a cycle > 15 or so will take a really long time to generate. I'm going to optimize this furher, especially with the lazy evaluation implementaion, but for now you have to accept the somewhat slow implementation. Sorry. :(
+
 For example you get something like this:
 ```
   check generateSystem("A", @[(sym: 'A', word: "ABCA")], 0) == "ABCA"
