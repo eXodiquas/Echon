@@ -15,28 +15,22 @@ proc generateSystem*(start: string, p: seq[Prule], cycle: int): string =
   ]#
   let ruletable = p.toTable()
 
-  #[
-    Represents the result of the l-system.
-  ]#
-  var res = ""
+  var 
+    input = start  
+    res = ""
 
   #[
     Checks if there is a rule that applies to the current char c in the current word. 
-    If so apply the first rule that matches the character. 
+    If so look up the replacement and put it in the string.
     If there is no such rule just write the character as it is.
   ]#
-  for c in start:
-    if ruletable.hasKey(c):
-      res.add(ruletable.getOrDefault(c, "ERROR"))
-    else:
-      res.add(c)
+  for _ in countdown(cycle, 0):
+    res = ""
+    for c in input:
+      if ruletable.hasKey(c):
+        res.add(ruletable.getOrDefault(c, "ERROR"))
+      else:
+        res.add(c)
+    input = res
   
-  #[
-    Checks if we are at the right recursion depth, if so return the final result.
-    If not recur with the new result as input string, the same rules and cycle reduced by 1.
-  ]#
-  if cycle == 0:
-    res
-  else:
-    generateSystem(res, p, cycle - 1)
-  
+  return res
