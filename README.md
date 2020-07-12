@@ -5,7 +5,7 @@ Just call ```generateSystem(start: string, p: seq[Prule], cycle: int)``` where `
 
 Be careful: 
 ```
-generateSystem("F--F--F", @[(sym: 'F', word: "F+F--F+F")], 0) == "F+F--F+F--F+F--F+F--F+F--F+F"
+generateSystem("F--F--F", @[(sym: 'F', word: "F+F--F+F")], cycle)
 ```
 with a cycle > 15 or so will take a really long time to generate. I'm going to optimize this furher, especially with the lazy evaluation implementaion, but for now you have to accept the somewhat slow implementation. Sorry. :(
 
