@@ -28,4 +28,5 @@ If something is unclear, please let me know.
 Here is a visual test:
 
 [Sierpinski Triangle Youtube](https://www.youtube.com/watch?v=XjHvvnXVOWU)
+[Dragon Curve Youtube](https://www.youtube.com/watch?v=pJ6OyyDV1kc)
 
