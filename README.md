@@ -24,3 +24,8 @@ For example you get something like this:
 The last one describes a version of the [Koch curve](https://en.wikipedia.org/wiki/L-system#Example_4:_Koch_curve).
 
 If something is unclear, please let me know.
+
+Here is a visual test:
+
+[Sierpinski Triangle Youtube](https://www.youtube.com/watch?v=XjHvvnXVOWU)
+
