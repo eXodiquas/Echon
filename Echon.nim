@@ -1,4 +1,4 @@
-import tables, math
+import tables, math, algorithm
 
 type
   ## A tuple that represents a replacement rule for the l-system.
@@ -31,7 +31,8 @@ proc generatePoints*(lsystem: string, start: Point, angle: float, stepsize: floa
         curPoint.dir -= angle
       else:
         discard
-
+  
+  res.reverse
   return res
   
 
