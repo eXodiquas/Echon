@@ -12,7 +12,7 @@ type
     y: float
     dir: float
 
-proc generatePoints*(lsystem: string, start: Point, angle: float): seq[tuple[x: float, y: float, dir: float]] =
+proc generatePoints*(lsystem: string, start: Point, angle: float, stepsize: float = 1): seq[tuple[x: float, y: float, dir: float]] =
 
   var res: seq[tuple[x: float, y: float, dir: float]] = @[start]
   var curPoint = start
@@ -20,8 +20,8 @@ proc generatePoints*(lsystem: string, start: Point, angle: float): seq[tuple[x: 
   for c in lsystem:
     case c:
       of 'A'..'Z':
-        curPoint.x = curPoint.x + cos(curPoint.dir)
-        curPoint.y = curPoint.y + sin(curPoint.dir)
+        curPoint.x = curPoint.x + cos(curPoint.dir) * stepsize
+        curPoint.y = curPoint.y + sin(curPoint.dir) * stepsize
         res.add(curPoint)
       of 'a'..'z':
         continue
