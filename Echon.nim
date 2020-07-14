@@ -14,8 +14,12 @@ type
 
 proc generatePoints*(lsystem: string, start: Point, angle: float, stepsize: float = 1): seq[tuple[x: float, y: float, dir: float]] =
 
+  ## Takes a lsystem as string, a starting point (x: float, y: float, dir: float), a initial angle and a optional stepsize to generate the
+  ## points of the given lsystem.
+
   var res: seq[tuple[x: float, y: float, dir: float]] = @[start]
   var curPoint = start
+  var positionStack: seq[tuple[x: float, y: float, dir: float]] = @[]
 
   for c in lsystem:
     case c:
@@ -25,6 +29,11 @@ proc generatePoints*(lsystem: string, start: Point, angle: float, stepsize: floa
         res.add(curPoint)
       of 'a'..'z':
         continue
+      of '[':
+        positionStack.add(curPoint)
+      of ']':
+        if positionStack.len > 0:
+          curPoint = positionStack.pop()
       of '+':
         curPoint.dir += angle
       of '-':
@@ -35,7 +44,6 @@ proc generatePoints*(lsystem: string, start: Point, angle: float, stepsize: floa
   res.reverse
   return res
   
-
 proc generateSystem*(start: string, p: seq[Prule], cycle: int): string =
 
   ## Takes a starting word, a seq of rules and a int for the number of recurring cycles 
