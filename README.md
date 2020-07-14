@@ -31,3 +31,5 @@ Here is a visual test:
 
 [Dragon Curve Youtube](https://www.youtube.com/watch?v=pJ6OyyDV1kc)
 
+## Syntax
+There are special characters for systems if you want to use the ```generatePoints``` function. All upper case letters from ```A-Z``` are generating a point 1 step further into the current direction. All lower case letters ```a-z``` do not generate a point and are used to control the l-system growth. The ```+``` and ```-``` sign are used to add or subtract the given angle and ```[``` and ```]``` are there to save and restore positions. ```[``` saves the current position and ```]``` restores the corresponding position.
