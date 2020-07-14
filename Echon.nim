@@ -12,8 +12,7 @@ type
     y: float
     dir: float
 
-proc generatePoints*(lsystem: string, start: Point, angle: float, stepsize: float = 1): seq[tuple[x: float, y: float, dir: float]] =
-
+proc generatePoints*(lsystem: string, start: Point, angle: float, stepsize: float = 1.0): seq[tuple[x: float, y: float, dir: float]] =
   ## Takes a lsystem as string, a starting point (x: float, y: float, dir: float), a initial angle and a optional stepsize to generate the
   ## points of the given lsystem.
 
@@ -45,7 +44,6 @@ proc generatePoints*(lsystem: string, start: Point, angle: float, stepsize: floa
   return res
   
 proc generateSystem*(start: string, p: seq[Prule], cycle: int): string =
-
   ## Takes a starting word, a seq of rules and a int for the number of recurring cycles 
   ## and produces a string that represents the input string after the l-system transformations.
   
@@ -73,3 +71,18 @@ proc generateSystem*(start: string, p: seq[Prule], cycle: int): string =
     input = res
   
   return res
+
+proc generatePointsForSystem*(start: string, p: seq[Prule], cycle: int, startPoint: Point, angle: float, stepsize: float = 1.0): seq[tuple[x: float, y: float, dir: float]] =
+  ## Takes a start word, a sequence of rules (sym: char, word: string), a cycle depth, a starting point (x: float, y: float, dir: float)
+  ## a angle in radians and a optional stepsize (distance between the calculated points) and returns a sequence of points (x: float, y: float, dir: float)
+  ## that represent the evaluated l-system in a two dimensional plane. This function combines the functions 'generateSystem' and 'generatePoints'.
+  let system = generateSystem(start, p, cycle)
+  let points = generatePoints(system, startPoint, angle, stepsize)
+  return points
+
+iterator generatePointsIter*(lsystem: string, start: Point, angle: float, stepsize: float = 1.0): tuple[x: float, y: float, dir: float] =
+  let pointseq = generatePoints(lsystem, start, angle, stepsize)
+
+  for p in pointseq:
+    yield p
+    
